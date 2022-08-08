@@ -28,7 +28,7 @@ const Result = ({ data, userName, favLang }) => {
           <Typography sx={{ width: "100%", textAlign: "center" }} variant="h6" component="h5">
            {userName}'s Favourite Language
           </Typography>
-          <Typography sx={{ width: "100%", textAlign: "center" }} variant="h2" component="h5">
+          <Typography sx={{ width: "100%", textAlign: "center" }} variant="h4" component="h5">
             {favLang}
           </Typography>
         </Box >
