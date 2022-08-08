@@ -106,7 +106,7 @@ const Detail = () => {
           <Box sx={{ width: { xs: "100%", md: "100%" } }}>
             <img
               alt="GitHub Big Logo"
-              src="./assets/github-logo2.png"
+              src="./assets/github-logo.png"
               style={{ maxWidth: "100%", maxHeight: "100%" }}
             />
           </Box>
