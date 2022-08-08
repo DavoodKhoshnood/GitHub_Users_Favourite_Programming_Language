@@ -25,7 +25,6 @@ const Chart = ( { data, userName } ) => {
                     position: 'inside',
                     silent: false,
                     fontWeight: '800',
-
                   },          },
             ],
       };

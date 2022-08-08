@@ -4,6 +4,7 @@ import axios from "axios";
 import Result from "./Result";
 import { SearchContext } from "../../context/searchContext";
 import ErrorAlert from "./ErrorAlert";
+import { Typography } from "@mui/material";
 
 const Detail = () => {
   const [data, setData] = useState([]);
@@ -58,21 +59,24 @@ const Detail = () => {
 
   // Load data
   useEffect(() => {
-    async function getGithubData(userName) {
-      try {
-        const response = await axios.get(
-          `https://api.github.com/users/${userName}/repos`
-        );
-        setUserExists(true);
-        findFav(response.data);
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-        setUserExists(false);
-        setError(true);
+    if (userName) {
+      async function getGithubData(userName) {
+        try {
+          console.log(userName);
+          const response = await axios.get(
+            `https://api.github.com/users/${userName}/repos`
+          );
+          setUserExists(true);
+          findFav(response.data);
+          console.log(response);
+        } catch (error) {
+          console.error(error);
+          setUserExists(false);
+          setError(true);
+        }
       }
+      getGithubData(userName);
     }
-    getGithubData(userName);
   }, [setUserExists, userName]);
 
   return (
@@ -85,12 +89,35 @@ const Detail = () => {
         rowGap: 4,
       }}
     >
+      {!userExists && (
+        <Box sx={{ minHeight: "100%" }}>
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{
+              display: { md: "none", xs: "flex" },
+              width: "100%",
+              heigth: "100%",
+              textAlign: "center",
+            }}
+          >
+            GitHub User's Favourite Programming Language
+          </Typography>
+          <Box sx={{ width: { xs: "100%", md: "100%" } }}>
+            <img
+              alt="GitHub Big Logo"
+              src="./assets/github-logo2.png"
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+            />
+          </Box>
+        </Box>
+      )}
       {/* Show result */}
       {userExists && (
         <Result data={data} userName={userName} favLang={favLang} />
       )}
       {/* Alert for user not found */}
-      <ErrorAlert error = {error} setError = {setError} userName = {userName} />
+      <ErrorAlert error={error} setError={setError} userName={userName} />
     </Box>
   );
 };
