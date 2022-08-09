@@ -30,7 +30,7 @@ const Result = ({ data, userName, favLang }) => {
           borderRadius: 1,
           boxShadow: "10px 10px 10px #e1e1e1",
           maxWidth: "100%",
-          minWidth: "80%",
+          minWidth: "90%",
         }}
       >
         <Typography
