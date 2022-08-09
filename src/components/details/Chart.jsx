@@ -4,7 +4,8 @@ import { Box } from '@mui/material';
 
 const Chart = ( { data, userName } ) => {
     const option = {
-        heigth: 1800,
+      height: null,
+width:  null,
         text: `${userName}`,
         title: {
           left: "center",
@@ -21,7 +22,11 @@ const Chart = ( { data, userName } ) => {
                   };
                 }),
                 radius: ["20%", "100%"],
-                label: {
+                itemStyle: {
+                  borderRadius: 6,
+                  borderColor: '#fff',
+                  borderWidth: 2
+                }, label: {
                     position: 'inside',
                     silent: false,
                     fontWeight: '800',

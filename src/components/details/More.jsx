@@ -35,9 +35,9 @@ const More = () => {
   const uniqIt = (data, key) => {
     return [...new Map(data.map((x) => [key(x), x])).values()];
   };
- 
+
   const newData = uniqIt(data, (it) => it.title);
-  
+
   return (
     <table>
       <thead>

@@ -14,7 +14,6 @@ const Result = ({ data, userName, favLang }) => {
   return (
     <Box
       sx={{
-        minWidth: "60%",
         maxWidth: "100%",
         display: "flex",
         flexDirection: "column",
@@ -29,7 +28,6 @@ const Result = ({ data, userName, favLang }) => {
           border: "1px solid #f1f1f1",
           borderRadius: 1,
           boxShadow: "10px 10px 10px #e1e1e1",
-          maxWidth: "100%",
           minWidth: "90%",
         }}
       >

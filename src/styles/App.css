@@ -16,7 +16,3 @@ td, th {
     flex-direction: column;
     min-width: 100%;
 }
-
-body {
-    min-width: 360px;
-}
