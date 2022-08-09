@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import Header from "../details/Header";
 import Detail from "../details/Detail";
 import { SearchContext } from "../../context/searchContext";
+import '../../styles/App.css'
 
 ////------------------------------- Code Description ----------------------------------////
 //// I've used https://api.github.com/users/username/repos API in Detail component to get repos' laguages 

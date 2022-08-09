@@ -84,7 +84,7 @@ const Detail = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        margin: "20px 40px",
+        margin: "20px 10px",
         alignItems: "center",
         rowGap: 4,
       }}

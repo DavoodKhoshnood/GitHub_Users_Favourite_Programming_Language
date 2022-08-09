@@ -4,8 +4,7 @@ import { Box } from '@mui/material';
 
 const Chart = ( { data, userName } ) => {
     const option = {
-        autoSize: false,
-        heigth: 500,
+        heigth: 1800,
         text: `${userName}`,
         title: {
           left: "center",
@@ -14,6 +13,7 @@ const Chart = ( { data, userName } ) => {
         series: [
             {
                 type: "sunburst",
+                startAngle: 180,
                 data: data.map((fav) => {
                   return {
                     value: fav.percent,
@@ -29,11 +29,9 @@ const Chart = ( { data, userName } ) => {
             ],
       };
     return ( 
-        <>
-        <Box sx={{ width: "100%" }}>
-          <ReactEcharts sx={{ width: "100%" }} option={option} />
-        </Box>
-        </>
+      <Box sx={{ minWidth: 1000 }}>
+        <ReactEcharts sx={{ width: "80%" , p:6}} option={option} />
+      </Box>
      );
 }
  

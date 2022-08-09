@@ -1,0 +1,22 @@
+table {
+     margin-top: 40px;
+     max-width: auto;
+     width: 100%;
+}
+  
+td, th {
+  border: 1px solid rgb(124, 119, 119);
+  padding: 0.8rem;
+  text-align: left;
+  font-size: 18px;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+}
+
+body {
+    min-width: 360px;
+}
