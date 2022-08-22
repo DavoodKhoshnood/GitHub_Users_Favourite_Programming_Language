@@ -34,7 +34,7 @@ width:  null,
             ],
       };
     return ( 
-      <Box sx={{ minWidth: 1000 }}>
+      <Box sx={{ minWidth: {xs:"100%", md:1000}}}>
         <ReactEcharts sx={{ width: "80%" , p:6}} option={option} />
       </Box>
      );
