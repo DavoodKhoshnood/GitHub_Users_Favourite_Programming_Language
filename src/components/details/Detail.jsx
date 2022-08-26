@@ -24,6 +24,7 @@ const Detail = () => {
           );
           if(response.data.length>0) {
             setUserExists(true);
+            
             setDataHandler(findFavourite(response.data));
           } 
       else {
@@ -43,8 +44,9 @@ const Detail = () => {
 
   const setDataHandler = (newData) => {
     setData(newData);
+
     // Set favourite language
-    setfaveLang(newData[0].language);
+    setfaveLang(newData.filter(el => el.count === newData[0].count).map(el => el.language));
   } 
 
   return (
