@@ -14,7 +14,8 @@ import '../../styles/App.css'
 function App() {
   const [userName, setUserName] = useState("");
   const [userExists, setUserExists] = useState(false);
-  const providerValue = useMemo(() => ({userName, setUserName, userExists, setUserExists}), [userName, setUserName, userExists, setUserExists]);
+  const [data, setData] = useState([]);
+  const providerValue = useMemo(() => ({data, setData, userName, setUserName, userExists, setUserExists}), [data, setData, userName, setUserName, userExists, setUserExists]);
  
   return (
     <>

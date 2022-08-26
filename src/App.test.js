@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import App from './components/main/App';
 
-test('renders learn react link', () => {
+test('renders Enter GitHub Handle search box place holder', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const searchElement = screen.getByPlaceholderText('Enter GitHub Handle');
+  expect(searchElement).toBeInTheDocument();
 });

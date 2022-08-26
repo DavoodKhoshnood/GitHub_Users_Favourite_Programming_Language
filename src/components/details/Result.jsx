@@ -11,6 +11,7 @@ const Result = ({ data, userName, favLang }) => {
     var win = window.open(url, "_blank");
     win.focus();
   }
+   
   return (
     <Box
       sx={{
@@ -36,14 +37,14 @@ const Result = ({ data, userName, favLang }) => {
           variant="h6"
           component="h5"
         >
-          {userName}'s Favourite Language
+          {userName}'s {favLang.length>1&&`Top ${favLang.length}`} Favourite Language{favLang.length>1&&`s`}
         </Typography>
         <Typography
           sx={{ width: "100%", textAlign: "center" }}
           variant="h4"
           component="h5"
         >
-          {favLang}
+          {favLang.join(',')}
         </Typography>
       </Box>
       <Chart data={data} userName={userName} />

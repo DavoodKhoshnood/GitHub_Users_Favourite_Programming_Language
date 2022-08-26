@@ -5,57 +5,13 @@ import Result from "./Result";
 import { SearchContext } from "../../context/searchContext";
 import ErrorAlert from "./ErrorAlert";
 import { Typography } from "@mui/material";
+import { findFavourite } from './functions.js'
 
 const Detail = () => {
   const [data, setData] = useState([]);
   const [favLang, setfaveLang] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const { userName, userExists, setUserExists } = useContext(SearchContext);
-
-  const findFav = (data) => {
-    const favList = [];
-
-    // Calculate language percentages
-    const getPercentage = (list) => {
-      // Sum of languages
-      const sum = list.reduce((total, next) => total + next.count, 0);
-
-      const percent = list.map((fav) => {
-        return {
-          language: fav.language,
-          count: fav.count,
-          percent: Math.round(((fav.count * 100) / sum) * 100) / 100,
-        };
-      });
-      return percent;
-    };
-
-    // Make a language list from data
-    data.forEach((d) => {
-      const found = favList.filter((res) => res.language === d.language);
-      // Increase count of exist language
-      if (found.length > 0) {
-        found[0].count = found[0].count + 1;
-      } else {
-        // Add new language if exists
-        if (d.language != null) {
-          favList.push({ language: d.language, count: 1, percent: 0 });
-        }
-      }
-    });
-
-    // Get calculated percentage array
-    const result = getPercentage(favList);
-
-    // Sort count descending
-    result.sort((a, b) => b.count - a.count);
-
-    // Set favaurite language
-    setfaveLang(result[0].language);
-
-    // Set all languges to show
-    setData(result);
-  };
 
   // Load data
   useEffect(() => {
@@ -66,18 +22,32 @@ const Detail = () => {
           const response = await axios.get(
             `https://api.github.com/users/${userName}/repos`
           );
-          setUserExists(true);
-          findFav(response.data);
+          if(response.data.length>0) {
+            setUserExists(true);
+            
+            setDataHandler(findFavourite(response.data));
+          } 
+      else {
+            setUserExists(false);
+            setError("The user doesn't have any repositories!")
+          }
           console.log(response);
         } catch (error) {
           console.error(error);
           setUserExists(false);
-          setError(true);
+          setError('Github user not fount!');
         }
       }
       getGithubData(userName);
     }
   }, [setUserExists, userName]);
+
+  const setDataHandler = (newData) => {
+    setData(newData);
+
+    // Set favourite language
+    setfaveLang(newData.filter(el => el.count === newData[0].count).map(el => el.language));
+  } 
 
   return (
     <Box

@@ -11,8 +11,8 @@ const ErrorAlert = ({ error, setError, userName }) => {
   return (
     <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        open={error && userName}
-        autoHideDuration={2000}
+        open={error.length>0 && userName.length>0}
+        autoHideDuration={3000}
         onClose={handleClose}
       >
         <Alert
@@ -20,7 +20,7 @@ const ErrorAlert = ({ error, setError, userName }) => {
           severity="error"
           sx={{ width: "100%", color: "#fff", backgroundColor: "#ff0000" }}
         >
-          Github user not fount!
+          {error}
         </Alert>
       </Snackbar>  )
 }
