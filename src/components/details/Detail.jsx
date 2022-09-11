@@ -18,7 +18,6 @@ const Detail = () => {
     if (userName) {
       async function getGithubData(userName) {
         try {
-          console.log(userName);
           const response = await axios.get(
             `https://api.github.com/users/${userName}/repos`
             );
@@ -40,7 +39,6 @@ const Detail = () => {
             setUserExists(false);
             setError("The user doesn't have any repositories!")
           }
-          console.log(response);
         } catch (error) {
           console.error(error);
           setUserExists(false);

@@ -24,8 +24,8 @@ const More = () => {
       </thead>
       <tbody>
         {newData.map((obj) => {
-          //const sum = obj.laguages.reduce((total, next) => total + next[1], 0);
-          //console.log(sum);
+          // const sum = obj.laguages.reduce((total, next) => total + next[1], 0);
+          console.log(obj);
           return (
             <tr key={obj.id}>
               <td>
