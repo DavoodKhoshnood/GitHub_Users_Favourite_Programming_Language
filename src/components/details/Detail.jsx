@@ -11,7 +11,7 @@ const Detail = () => {
   const [data, setData] = useState([]);
   const [favLang, setfaveLang] = useState("");
   const [error, setError] = useState('');
-  const { userName, userExists, setUserExists } = useContext(SearchContext);
+  const { setUserObj, userName, userExists, setUserExists } = useContext(SearchContext);
 
   // Load data
   useEffect(() => {
@@ -21,11 +21,20 @@ const Detail = () => {
           console.log(userName);
           const response = await axios.get(
             `https://api.github.com/users/${userName}/repos`
-          );
-          if(response.data.length>0) {
-            setUserExists(true);
-            
-            setDataHandler(findFavourite(response.data));
+            );
+            if(response.data.length>0) {
+              setUserExists(true);
+              const result = response.data
+              result.map(async (obj) => {
+                async function getLanguages() {
+                  await axios.get(obj.languages_url).then((res) => {
+                    obj['languages'] = res.data;                    
+                  });
+                }
+                getLanguages();
+              });
+              setUserObj(result)
+              setDataHandler(findFavourite(response.data));
           } 
       else {
             setUserExists(false);
@@ -40,7 +49,7 @@ const Detail = () => {
       }
       getGithubData(userName);
     }
-  }, [setUserExists, userName]);
+  }, [setUserExists, setUserObj, userName]);
 
   const setDataHandler = (newData) => {
     setData(newData);
